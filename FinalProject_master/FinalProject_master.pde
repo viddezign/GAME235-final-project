@@ -1,3 +1,4 @@
+//Ernes Railey
 //TODO add eerie music, refactor with switch statements
 //FFT analyzer for spawning things based on frequency
 
