@@ -18,6 +18,7 @@ ControlP5 cp5;
 
 String userName, submission;
 int gameState;
+int nowTime;
 boolean submitted;
 boolean testing;
 

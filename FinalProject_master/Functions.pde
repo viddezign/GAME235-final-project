@@ -158,6 +158,8 @@ void drawHub(){
  
  if(gameState == PHASE_2){
    
+   nowTime = millis();
+   
    if (testing == true){
      
       spawn(fft);
@@ -176,11 +178,13 @@ void drawHub(){
     
     fill(255);
     
-    int time = 60 - (millis()/1000);
+    int time = 60 - (nowTime/1000);
     text("TIME REMAINING: " + time + " s", RIGHT, height - 50); 
     
     if(time == 0){
-       
+      
+      nowTime = 6000;
+      
       gameState = END;
       oCounter = 0;
     }
