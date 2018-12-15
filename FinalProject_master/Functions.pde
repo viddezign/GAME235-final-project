@@ -1,27 +1,36 @@
 
 void mousePressed(){
   
-  if (gameState == TITLE){ //the typing input doesn't work in draw so, I'm switching the order of the states for a bit
+  //if (gameState == INTRO){ //the typing input doesn't work in draw so, I'm switching the order of the states for a bit
    
-   //remove the TITLE thing for now becuase it throws eveyrthing off *sigh*
-      gameState = PHASE_1;
-  }
+  // //remove the TITLE thing for now becuase it throws eveyrthing off *sigh*
+  //    gameState = INTRO;
+  //    userInput1();
+  //    userInput2();
+  //}
   
-  if (gameState == PHASE_1){ 
+  
+  if (gameState == PHASE_1 || gameState == PHASE_2){ 
     
-    if (bubbles.size() < 1200){
+    if (bubbles.size() < 750){
     
       counter++;
-     bubbles.add(new Bubble());
+      bubbles.add(new Bubble());
     }
   }
+ 
+ if(gameState == INTERIM){
+   
+   development = false;
+   gameState = PHASE_2;
+ }
 }
 
 void mouseDragged(){
   
-  if (gameState == PHASE_1){
+  if (gameState == PHASE_1 || gameState == PHASE_2){
    
-    if (bubbles.size() < 1200){
+    if (bubbles.size() < 750){
       
       counter++;
       bubbles.add(new Bubble());
@@ -89,18 +98,143 @@ void bubInteractions(){
 }
 
 void drawTitle(){
+  
+  fill(255, 255, 255, 67);
+  textSize(20);
+  text("t h e", width/2 + 200, height/2 - 135);
+  
+  fill(255, 255, 255, 67);
+  textSize(50);
+  text("c u r e", width/2 + 160, height/2 - 105);
+  
+  fill(255, 255, 255, 127);
+  textSize(50);
+  text("c u r e", width/2 + 155, height/2 - 100);
 
-  fill(255);
-  textSize(45);
-  text("c u r e", width/2, height/2);
+  fill(255, 255, 255, 225);
+  textSize(50);
+  text("c u r e", width/2 + 150, height/2 - 95);
+  
+   //for(int i = 0; i < 20; i++){
+   //  rect(width/2 + 2*i, height/2, 10, 10);  //replace  with circles
+   //}
 }
 
+void spawn(FFT thisFFT){
+  
+
+     thisFFT = fft;
+     
+     int time = (65 - millis()/1000); 
+     
+     for(int i = 0; i < fft.specSize(); i++){
+    
+       if( fft.getBand(i)*10000 > 536.3 && fft.getBand(i)*1000 < 536.8 ){
+         
+         if(gameState == PHASE_2 && limit < 7 && time < 55){        
+           
+           limit++;
+           crosshairs.add(new Crosshair());
+         }
+       }
+     }
+   }
+   
 void drawHub(){
- fill(255);
- textSize(25);
- text("cure development: " + round((counter/efficiency) * 100) + "%", RIGHT, 50 ); 
  
- fill(255, 255, 255, 127);
- textSize(28);
- text("Click and drag to create the anti-virus' molecular structure", RIGHT, 75);
+ if(gameState == PHASE_1){
+   
+    fill(255);
+    textSize(25);
+    text("CURE DEVELOPMENT: " + round((counter/efficiency) * 100) + "%", RIGHT, 50 ); 
+ 
+    fill(255, 255, 255, 127);
+    textSize(25);
+   
+   text("Click and drag to create the anti-virus' molecular structure", RIGHT, 80);
+ }
+ 
+ if(gameState == INTERIM){ //cahnge to interim <-- for intstructions
+   
+    fill(255);
+    textSize(25);
+    text("CURE DEVELOPMENT: " + round((counter/efficiency) * 100) + "%", RIGHT, 50 ); 
+ 
+    fill(255, 255, 255, 127);
+    textSize(25);
+   
+    text("Proceeding to the DURABILITY TEST...", RIGHT, 80);
+   
+    fill(255, 255, 255, 127);
+    text("Click anywhere to begin", RIGHT, 110);
+ }
+ 
+ if(gameState == PHASE_2){ //cahnge to interim <-- for intstructions
+   
+    spawn(fft);
+     
+    fill(255);
+    
+    if (counter < 525){
+      
+      fill(255, 0 ,0);
+    }
+    
+    
+    textSize(25);
+    text("DURABILITY: " + round((counter/efficiency) * 100) + "%", RIGHT, 50 ); 
+    
+    fill(255);
+    
+    int time = 60 - (millis()/1000);
+    text("TIME REMAINING: " + time + " s", RIGHT, height - 50); 
+    
+    if(time == 0){
+       
+      gameState = END;
+    }
+ 
+   fill(255, 255, 255, 127);
+   textSize(25);
+   
+   text("Cross hairs will destroy the anti-virus and reduce its durability.", RIGHT, 80);
+   
+   fill(255);
+   text("Durability MUST stay above 70%", RIGHT, 110);
+   
+   textSize(18);
+   fill(255, 255, 255, 127);
+   text("...Our survival depends on it, Dr. " + userName+ ".", RIGHT, 130); 
+  }
+}
+
+void drawReport(){
+  
+    background(0);
+    
+    drawTitle();
+    
+    textSize(25);
+    
+    if (round((counter/efficiency) * 100) > 70){
+       
+      fill(255);
+      text("You've done it, Dr. " + userName, RIGHT, 110);
+   
+      text("We may come out of this  alive yet.", RIGHT, 130);  //TODO fade this over time
+       
+    }
+    
+    else if(round((counter/efficiency) * 100) < 70){
+      
+      fill(255);
+      
+      text("You've  failed Dr. " + userName, RIGHT, 110);
+   
+      text("There are  no more resrouces available to recreate the cure.", RIGHT, 130);
+      
+      text("We are lost.", RIGHT, 175);      
+      text("...we will die like dogs", RIGHT, 200);
+      
+    } 
 }

@@ -4,7 +4,7 @@ void userInput1(){
   PFont font = createFont("VT323-Regular.ttf", 32);
   
   cp5.addTextfield("PLEASE ENTER YOUR NAME")
-   .setPosition(LEFT, 100)
+   .setPosition(LEFT, 300)
    .setSize(200,40)
    .setFont(font)
    .setFocus(true)
@@ -12,19 +12,18 @@ void userInput1(){
    ;
    
      cp5.addBang("START")
-     .setPosition(LEFT, height/2)
+     .setPosition(LEFT, height/2 + 25)
      .setSize(80,40)
      .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
      ;    
    cp5.hide("START");
                
   cp5.addBang("SUBMIT")
-     .setPosition(LEFT, height/2)
+     .setPosition(LEFT, height/2 + 25)
      .setSize(80,40)
      .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
      ;    
     
-   
   textSize(32);
   textFont(font); 
 }
@@ -44,11 +43,14 @@ void SUBMIT(){
 void userInput2(){
     
     fill(255);
+    textSize(32);
     
     if (gameState == INTRO){
-      
-    submission = cp5.get(Textfield.class,"PLEASE ENTER YOUR NAME").getText();
-    }
+
+     
+      submission = cp5.get(Textfield.class,"PLEASE ENTER YOUR NAME").getText();
+       
+  }
     
     if (gameState == INTRO_2 && submitted == true){
       
@@ -72,9 +74,9 @@ void START(){
   if (gameState == INTRO_2){
     
     cp5.show("START");
-    gameState = TITLE;
+    gameState = PHASE_1;
   }
   
  }
-  
+
  
