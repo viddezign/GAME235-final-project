@@ -16,11 +16,11 @@ class Bubble extends Entity {
   Bubble() {
 
     position = new PVector(mouseX, mouseY);
-    //velocity = new PVector(0,0); //hmm might be 0 so pick a different range
+
     float angle = random(TWO_PI);
     velocity = new PVector(cos(angle), sin(angle));
     bubColor = color(255, 255, 255, 67);
-    //radius = random(10, 25); //add in render for cool continuous effect
+
     mass = random(0.002, 0.02);
     radius = mass*1500;
   }
@@ -64,11 +64,6 @@ class Bubble extends Entity {
   }
 }
 
-//for intro animation, same base, different behavior for intro  <--LAST
-class Intro_Bubble extends Bubble {
-}
-
-//NOTE: anti-virus will move toward the  moving crosshairs
 class Crosshair extends Bubble {
 
   int opacity;
@@ -86,8 +81,6 @@ class Crosshair extends Bubble {
 
 
   void render(){
-    
-    dying = false;
 
     fill(bubColor, opacity);
     noStroke();

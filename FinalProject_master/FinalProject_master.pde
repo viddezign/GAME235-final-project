@@ -1,5 +1,6 @@
 //Ernes Railey
-//GAME 235 Final  Project "the cure"
+//GAME 235 Final  Project "the cure" 
+// (turn up your volume)
 //a game during which the player develops and tests the durability of an unknown anti-virus
 //during PHASE_2, the crosshairs spawn at a specific frequency provided by the FFT analyzer
 
@@ -98,8 +99,6 @@ void setup(){
 void draw(){
   
   background(25);
-  println(gameState);
- 
   
   fft.forward(player.mix);
     

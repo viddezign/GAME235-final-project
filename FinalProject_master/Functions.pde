@@ -105,7 +105,6 @@ void drawTitle(){
   fill(255, 255, 255, 225);
   textSize(50);
   text("c u r e", width/2 + 150, height/2 - 95);
- 
 }
 
 void spawn(FFT thisFFT){
@@ -159,8 +158,11 @@ void drawHub(){
  
  if(gameState == PHASE_2){
    
-    spawn(fft);
+   if (testing == true){
      
+      spawn(fft);
+   }
+   
     fill(255);
     
     if (counter < 525){
@@ -180,6 +182,7 @@ void drawHub(){
     if(time == 0){
        
       gameState = END;
+      oCounter = 0;
     }
  
    fill(255, 255, 255, 127);
@@ -190,15 +193,16 @@ void drawHub(){
    fill(255);
    text("Durability MUST stay above 70%", RIGHT, 110);
    
-   textSize(18);
+   textSize(22);
    fill(255, 255, 255, 127);
-   text("...Our survival depends on it, Dr. " + userName+ ".", RIGHT, 130); 
+   text("...Our survival depends on it, Dr. " + userName+ ".", RIGHT + 250, height - 50); 
   }
 }
 
 void drawReport(){
   
     background(0);
+    testing = false;
     
     drawTitle();
     
@@ -209,8 +213,8 @@ void drawReport(){
       fill(255);
       text("You've done it, Dr. " + userName, RIGHT, 110);
    
-      text("We may come out of this  alive yet.", RIGHT, 130);  //TODO fade this over time
-       
+      text("We may come out of this alive yet.", RIGHT, 130);  //TODO fade this over time
+  
     }
     
     else if(round((counter/efficiency) * 100) < 70){
@@ -219,10 +223,10 @@ void drawReport(){
       
       text("You've  failed Dr. " + userName, RIGHT, 110);
    
-      text("There are  no more resrouces available to recreate the cure.", RIGHT, 130);
+      text("There are no resources available to recreate the cure.", RIGHT, 130);
       
-      text("We are lost.", RIGHT, 175);      
-      text("...we will die like dogs", RIGHT, 200);
+      text("...we are lost.", RIGHT, 175);      
+      text("We will die like dogs...", RIGHT, 200);
       
     } 
 }
