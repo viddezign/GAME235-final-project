@@ -1,14 +1,5 @@
 
-void mousePressed(){
-  
-  //if (gameState == INTRO){ //the typing input doesn't work in draw so, I'm switching the order of the states for a bit
-   
-  // //remove the TITLE thing for now becuase it throws eveyrthing off *sigh*
-  //    gameState = INTRO;
-  //    userInput1();
-  //    userInput2();
-  //}
-  
+void mousePressed(){  
   
   if (gameState == PHASE_1 || gameState == PHASE_2){ 
     
@@ -114,10 +105,7 @@ void drawTitle(){
   fill(255, 255, 255, 225);
   textSize(50);
   text("c u r e", width/2 + 150, height/2 - 95);
-  
-   //for(int i = 0; i < 20; i++){
-   //  rect(width/2 + 2*i, height/2, 10, 10);  //replace  with circles
-   //}
+ 
 }
 
 void spawn(FFT thisFFT){
@@ -169,7 +157,7 @@ void drawHub(){
     text("Click anywhere to begin", RIGHT, 110);
  }
  
- if(gameState == PHASE_2){ //cahnge to interim <-- for intstructions
+ if(gameState == PHASE_2){
    
     spawn(fft);
      
