@@ -1,6 +1,3 @@
-/* TODO BIG BUBBLE/SWARM classs <--run everything through a for each function 
- for movement <-- hmm might not go in this direction
- */
 
 abstract class Entity {
 
